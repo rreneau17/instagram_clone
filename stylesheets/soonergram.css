@@ -23,6 +23,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 header {
@@ -65,6 +66,16 @@ header {
 
 .img-container img {
     height: 100%;
+}
+
+.img-overlay {
+    background-color: rgba(0, 0, 0, 0.495);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

@@ -38,6 +38,7 @@ var picPaths = [
 
 ]
 
+var picItems = [];
 var picsContainer = document.querySelector("[data-pics-container]");
 picPaths.forEach(function (picPath) {
     var imgElement = document.createElement('img');
@@ -45,10 +46,33 @@ picPaths.forEach(function (picPath) {
     var anchorElement = document.createElement('a');
     anchorElement.setAttribute('href', picPath.href);
     anchorElement.appendChild(imgElement);
+    picItems.push(anchorElement);
     var divElement = document.createElement('div');
     divElement.setAttribute('class', 'img-container');
     divElement.appendChild(anchorElement);
     picsContainer.appendChild(divElement);
+});
+
+var IMG_SEL = "[data-img-container]";
+// var OVERLAY_SEL = "[data-pics-target";
+
+//var picItems = document.querySelectorAll(IMG_SEL);
+// var overlayItems = document.querySelector(OVERLAY_SEL);
+
+picItems.forEach(function (picItem) {
+    picItem.addEventListener('click', function(event) {
+        event.preventDefault();
+        var divOverlay = document.createElement('div');
+        divOverlay.setAttribute('class','img-overlay');
+        var clonedAnchor = picItem.cloneNode(true);
+        divOverlay.appendChild(clonedAnchor);
+        document.body.appendChild(divOverlay);
+        clonedAnchor.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.body.removeChild(divOverlay);
+        });
+
+    });
 });
 
 // addPicture('images/riley.jpg');
